@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="526c407c-29cc-4834-813a-0e6931d7d15b" ChangeDateTime="12/23/2016 17:27:36">
+    <Property Name="ElementName" Value="[dbo].[Usuario].[DataCriacao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Usuario]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataHoraCriacao" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="28bf86b7-9af0-401e-87d5-320773003701" ChangeDateTime="12/23/2016 17:27:50">
+    <Property Name="ElementName" Value="[dbo].[Permissao].[DataCriacao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissao]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataHoraCriacao" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="18dfc980-8448-4be3-a3ba-1295db519aba" ChangeDateTime="12/23/2016 17:27:56">
+    <Property Name="ElementName" Value="[dbo].[GrupoAcessoUsuario].[DataCriacao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GrupoAcessoUsuario]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataHoraCriacao" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="377513a2-1b1b-4a48-ab3c-01d8786152d0" ChangeDateTime="12/23/2016 17:28:02">
+    <Property Name="ElementName" Value="[dbo].[GrupoAcessoPermissao].[DataCriacao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GrupoAcessoPermissao]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataHoraCriacao" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3321f391-729d-4e30-8436-c83719dcaf3d" ChangeDateTime="12/23/2016 17:28:09">
+    <Property Name="ElementName" Value="[dbo].[GrupoAcesso].[DataCriacao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GrupoAcesso]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataHoraCriacao" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4d1f3ca7-c5e1-4ee9-a508-273e5fb6f8fc" ChangeDateTime="12/23/2016 17:28:13">
+    <Property Name="ElementName" Value="[dbo].[GrupoAcesso].[DataUltimaAlteracao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GrupoAcesso]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataHoraUltimaAlteracao" />
+  </Operation>
+</Operations>

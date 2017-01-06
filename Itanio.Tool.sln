@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.Autenticacao", "Itanio.Autenticacao\Itanio.Autenticacao.csproj", "{64F30086-A2EB-4F37-9E62-79E47637DC59}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Itanio.Autenticacao.Database", "Itanio.Autenticacao.Database\Itanio.Autenticacao.Database.sqlproj", "{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.Autenticacao.WebServer", "Itanio.Autenticacao.WebServer\Itanio.Autenticacao.WebServer.csproj", "{5C83343E-A9EE-4770-AC3F-1C9C67D51ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.Tool.GestaoAssociado.Dominio", "Itanio.Tool.GestaoAssociado.Dominio\Itanio.Tool.GestaoAssociado.Dominio.csproj", "{046094A8-2748-45A8-8C37-846C2887B6AD}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Itanio.Tool.GestaoAssociado.Database", "Itanio.Tool.GestaoAssociado.Database\Itanio.Tool.GestaoAssociado.Database.sqlproj", "{5C0F5635-486C-4118-8F25-A37F136999CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64F30086-A2EB-4F37-9E62-79E47637DC59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F30086-A2EB-4F37-9E62-79E47637DC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F30086-A2EB-4F37-9E62-79E47637DC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F30086-A2EB-4F37-9E62-79E47637DC59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FBD9CCE-B3B1-40C0-AEB2-BD512E4541F5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5C83343E-A9EE-4770-AC3F-1C9C67D51ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C83343E-A9EE-4770-AC3F-1C9C67D51ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C83343E-A9EE-4770-AC3F-1C9C67D51ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C83343E-A9EE-4770-AC3F-1C9C67D51ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046094A8-2748-45A8-8C37-846C2887B6AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046094A8-2748-45A8-8C37-846C2887B6AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046094A8-2748-45A8-8C37-846C2887B6AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046094A8-2748-45A8-8C37-846C2887B6AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0F5635-486C-4118-8F25-A37F136999CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0F5635-486C-4118-8F25-A37F136999CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0F5635-486C-4118-8F25-A37F136999CE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5C0F5635-486C-4118-8F25-A37F136999CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0F5635-486C-4118-8F25-A37F136999CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0F5635-486C-4118-8F25-A37F136999CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
