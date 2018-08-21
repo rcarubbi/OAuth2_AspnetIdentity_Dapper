@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -295,6 +296,14 @@
     <ProjectReference Include="..\Itanio.Autenticacao\Itanio.Autenticacao.csproj">
       <Project>{64F30086-A2EB-4F37-9E62-79E47637DC59}</Project>
       <Name>Itanio.Autenticacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Itanio.Tool.GestaoAssociado.DataAccess\Itanio.Tool.GestaoAssociado.DataAccess.csproj">
+      <Project>{02a13de4-214e-4ee8-a9b6-ce72262b9891}</Project>
+      <Name>Itanio.Tool.GestaoAssociado.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Itanio.Tool.GestaoAssociado.Dominio\Itanio.Tool.GestaoAssociado.Dominio.csproj">
+      <Project>{046094a8-2748-45a8-8c37-846c2887b6ad}</Project>
+      <Name>Itanio.Tool.GestaoAssociado.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

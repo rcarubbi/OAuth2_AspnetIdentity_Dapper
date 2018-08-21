@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.Autenticacao", "Itanio.Autenticacao\Itanio.Autenticacao.csproj", "{64F30086-A2EB-4F37-9E62-79E47637DC59}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.Tool.GestaoAssociado.Dominio", "Itanio.Tool.GestaoAssociado.Dominio\Itanio.Tool.GestaoAssociado.Dominio.csproj", "{046094A8-2748-45A8-8C37-846C2887B6AD}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Itanio.Tool.GestaoAssociado.Database", "Itanio.Tool.GestaoAssociado.Database\Itanio.Tool.GestaoAssociado.Database.sqlproj", "{5C0F5635-486C-4118-8F25-A37F136999CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.Tool.GestaoAssociado.DataAccess", "Itanio.Tool.GestaoAssociado.DataAccess\Itanio.Tool.GestaoAssociado.DataAccess.csproj", "{02A13DE4-214E-4EE8-A9B6-CE72262B9891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,8 +45,15 @@ Global
 		{5C0F5635-486C-4118-8F25-A37F136999CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C0F5635-486C-4118-8F25-A37F136999CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5C0F5635-486C-4118-8F25-A37F136999CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{02A13DE4-214E-4EE8-A9B6-CE72262B9891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A13DE4-214E-4EE8-A9B6-CE72262B9891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A13DE4-214E-4EE8-A9B6-CE72262B9891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A13DE4-214E-4EE8-A9B6-CE72262B9891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C808BA4-5ED3-47A1-95EC-98B0F0C0FE66}
 	EndGlobalSection
 EndGlobal

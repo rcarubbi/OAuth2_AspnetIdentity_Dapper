@@ -2,6 +2,8 @@
 using Itanio.Autenticacao.Repositorios;
 using System.Collections.Generic;
 using System.Web.Http;
+using Itanio.Tool.GestaoAssociado.DataAccess;
+using Itanio.Tool.GestaoAssociado.Dominio.Entidades;
 
 namespace Itanio.Autenticacao.WebServer.Controllers
 {
@@ -24,7 +26,7 @@ namespace Itanio.Autenticacao.WebServer.Controllers
         // GET api/Usuario
         public IEnumerable<Associado> Get()
         {
-            return Repository.Roles;
+            return Repository.ListarTodos();
         }
 
     }
