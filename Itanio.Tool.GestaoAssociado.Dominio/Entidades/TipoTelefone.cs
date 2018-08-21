@@ -1,6 +1,6 @@
 ﻿namespace Itanio.Tool.GestaoAssociado.Dominio.Entidades
 {
-    public enum TipoTelefone : int
+    public enum TipoTelefone
     {
         Celular,
         Residencial,

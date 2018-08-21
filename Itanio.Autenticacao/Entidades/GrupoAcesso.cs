@@ -6,7 +6,6 @@ namespace Itanio.Autenticacao.Entidades
     {
         public GrupoAcesso()
         {
-
         }
 
         public GrupoAcesso(int id, string nome)
@@ -16,22 +15,11 @@ namespace Itanio.Autenticacao.Entidades
         }
 
 
-        public bool Ativo
-        {
-            get;
-            set;
-        }
+        public bool Ativo { get; set; }
 
-        public int Id
-        {
-            get;
-            internal set;
-        }
+        public int Id { get; internal set; }
 
-        public string Nome
-        {
-            get; set;
-        }
+        public string Nome { get; set; }
 
         public List<Usuario> Usuarios { get; set; }
 

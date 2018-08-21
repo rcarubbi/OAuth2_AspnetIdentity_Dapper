@@ -1,6 +1,6 @@
 ﻿namespace Itanio.Tool.GestaoAssociado.Dominio.Entidades
 {
-    public enum Sexo : int
+    public enum Sexo
     {
         Masculino,
         Feminino

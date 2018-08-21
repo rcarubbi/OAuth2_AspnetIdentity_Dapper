@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
 {
@@ -7,13 +8,12 @@ namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
     {
         public Task SendAsync(IdentityMessage message)
         {
-           // TODO: Referenciar componente
-           // IMailSender sender = new SmtpSender();
-            var email = new System.Net.Mail.MailMessage
+            // TODO: Referenciar componente
+            // IMailSender sender = new SmtpSender();
+            var email = new MailMessage
             {
                 Body = message.Body,
-                Subject = message.Subject,
-
+                Subject = message.Subject
             };
 
             email.To.Add(message.Destination);

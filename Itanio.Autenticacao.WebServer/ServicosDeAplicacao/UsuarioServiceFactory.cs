@@ -1,9 +1,9 @@
-﻿using Itanio.Autenticacao.Entidades;
+﻿using System;
+using Itanio.Autenticacao.Entidades;
 using Itanio.Autenticacao.Repositorios;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using System;
 
 namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
 {
@@ -27,7 +27,7 @@ namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = false,
-                RequireUppercase = false,
+                RequireUppercase = false
             };
 
             // Configure AppMember lockout defaults
@@ -46,9 +46,8 @@ namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
 
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
-            {
-                service.UserTokenProvider = new DataProtectorTokenProvider<Usuario, Guid>(dataProtectionProvider.Create("Autenticação Itanio"));
-            }
+                service.UserTokenProvider =
+                    new DataProtectorTokenProvider<Usuario, Guid>(dataProtectionProvider.Create("Autenticação Itanio"));
             return service;
         }
     }

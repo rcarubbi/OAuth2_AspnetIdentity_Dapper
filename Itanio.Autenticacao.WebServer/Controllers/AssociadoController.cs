@@ -1,6 +1,4 @@
-﻿using Itanio.Autenticacao.Entidades;
-using Itanio.Autenticacao.Repositorios;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using Itanio.Tool.GestaoAssociado.DataAccess;
 using Itanio.Tool.GestaoAssociado.Dominio.Entidades;
@@ -11,6 +9,7 @@ namespace Itanio.Autenticacao.WebServer.Controllers
     public class AssociadoController : BaseApiController
     {
         private AssociadoRepository _repo;
+
         public AssociadoRepository Repository
         {
             get
@@ -28,6 +27,5 @@ namespace Itanio.Autenticacao.WebServer.Controllers
         {
             return Repository.ListarTodos();
         }
-
     }
 }

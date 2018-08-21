@@ -1,6 +1,6 @@
 ﻿namespace Itanio.Tool.GestaoAssociado.Dominio.Entidades
 {
-    public enum TipoEndereco : int
+    public enum TipoEndereco
     {
         Residencial,
         Comercial,

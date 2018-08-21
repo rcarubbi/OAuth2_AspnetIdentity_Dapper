@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
 
 namespace Itanio.Autenticacao.Entidades
 {
     public class Usuario : IUser<Guid>
     {
-        public Guid Id { get; internal set; }
-
         public string Email { get; set; }
 
         public bool Ativo { get; set; }
@@ -23,17 +21,12 @@ namespace Itanio.Autenticacao.Entidades
         public string Senha { get; set; }
 
         public bool DuplaVerificacaoHabilitada { get; set; }
+        public Guid Id { get; internal set; }
 
         public string UserName
         {
-            get
-            {
-                return Email;
-            }
-            set
-            {
-                Email = value;
-            }
+            get => Email;
+            set => Email = value;
         }
     }
 }

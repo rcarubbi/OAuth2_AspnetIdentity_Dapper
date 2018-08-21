@@ -1,8 +1,10 @@
-﻿using Microsoft.Owin;
+﻿using System.Web.Http;
+using Itanio.Autenticacao.WebServer;
+using Microsoft.Owin;
 using Owin;
-using System.Web.Http;
 
-[assembly: OwinStartupAttribute(typeof(Itanio.Autenticacao.WebServer.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
+
 namespace Itanio.Autenticacao.WebServer
 {
     public partial class Startup
@@ -12,7 +14,6 @@ namespace Itanio.Autenticacao.WebServer
             app.UseWebApi(new HttpConfiguration());
             ConfigureAuth(app);
             ConfigureCors(app);
-            
         }
     }
 }

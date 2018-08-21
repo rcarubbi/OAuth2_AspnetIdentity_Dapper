@@ -1,7 +1,7 @@
-﻿using Itanio.Autenticacao.Entidades;
+﻿using System;
+using Itanio.Autenticacao.Entidades;
 using Itanio.Autenticacao.Repositorios;
 using Microsoft.AspNet.Identity;
-using System;
 
 namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
 {
@@ -10,14 +10,11 @@ namespace Itanio.Autenticacao.WebServer.ServicosDeAplicacao
         public UsuarioService(UsuarioRepository repo)
             : base(repo)
         {
-
-
         }
 
         public UsuarioService()
             : base(new UsuarioRepository())
         {
-
         }
     }
 }

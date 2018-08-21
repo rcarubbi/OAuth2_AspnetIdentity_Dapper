@@ -1,9 +1,5 @@
-﻿using Itanio.Tool.GestaoAssociado.Dominio.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Itanio.Tool.GestaoAssociado.Dominio.Entidades;
 
 namespace Itanio.Tool.GestaoAssociado.Dominio
 {
@@ -16,7 +12,5 @@ namespace Itanio.Tool.GestaoAssociado.Dominio
         ICollection<Associado> ListarTodos();
 
         void Excluir(int id);
-
-
     }
 }

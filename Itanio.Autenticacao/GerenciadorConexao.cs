@@ -7,9 +7,15 @@ namespace Itanio.Autenticacao
 {
     public class GerenciadorConexao : IDisposable
     {
+        public GerenciadorConexao()
+        {
+            _conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["Itanio.Autenticacao.Server"]
+                .ConnectionString);
+        }
+
         private IDbConnection _conexao { get; set; }
 
-       
+
         public IDbConnection Conexao
         {
             get
@@ -21,12 +27,7 @@ namespace Itanio.Autenticacao
             }
         }
 
-        public GerenciadorConexao()
-        {
-            _conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["Itanio.Autenticacao.Server"].ConnectionString);
-        }
 
-        
         public void Dispose()
         {
             if (_conexao != null)
@@ -36,6 +37,7 @@ namespace Itanio.Autenticacao
                     _conexao.Close();
                     _conexao.Dispose();
                 }
+
                 _conexao = null;
             }
         }

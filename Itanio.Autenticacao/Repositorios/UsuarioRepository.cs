@@ -1,10 +1,10 @@
-﻿using Dapper;
-using Itanio.Autenticacao.Entidades;
-using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
+using Itanio.Autenticacao.Entidades;
+using Microsoft.AspNet.Identity;
 
 namespace Itanio.Autenticacao.Repositorios
 {
@@ -15,11 +15,11 @@ namespace Itanio.Autenticacao.Repositorios
         IUserLockoutStore<Usuario, Guid>,
         IUserTwoFactorStore<Usuario, Guid>
     {
+        private GerenciadorConexao _gerenciadorConexao;
 
         public UsuarioRepository()
             : this(new GerenciadorConexao())
         {
-
         }
 
         public UsuarioRepository(GerenciadorConexao gerenciadorConexao)
@@ -27,14 +27,69 @@ namespace Itanio.Autenticacao.Repositorios
             _gerenciadorConexao = gerenciadorConexao;
         }
 
-        private GerenciadorConexao _gerenciadorConexao;
+        public IQueryable<Usuario> Users => ListarTodos().AsQueryable();
 
-        public IQueryable<Usuario> Users
+        public Task<DateTimeOffset> GetLockoutEndDateAsync(Usuario user)
         {
-            get
-            {
-                return ListarTodos().AsQueryable();
-            }
+            return
+                Task.FromResult(user.DataHoraFimBloqueio.HasValue
+                    ? new DateTimeOffset(DateTime.SpecifyKind(user.DataHoraFimBloqueio.Value, DateTimeKind.Utc))
+                    : new DateTimeOffset());
+        }
+
+        public Task SetLockoutEndDateAsync(Usuario user, DateTimeOffset lockoutEnd)
+        {
+            user.DataHoraFimBloqueio = lockoutEnd.UtcDateTime;
+            Salvar(user);
+            return Task.FromResult(0);
+        }
+
+        public Task<int> IncrementAccessFailedCountAsync(Usuario user)
+        {
+            user.QuantidadeFalhasConsecutivas++;
+            Salvar(user);
+            return Task.FromResult(user.QuantidadeFalhasConsecutivas);
+        }
+
+        public Task ResetAccessFailedCountAsync(Usuario user)
+        {
+            user.QuantidadeFalhasConsecutivas = 0;
+            Salvar(user);
+            return Task.FromResult(user.QuantidadeFalhasConsecutivas);
+        }
+
+        public Task<int> GetAccessFailedCountAsync(Usuario user)
+        {
+            return Task.FromResult(user.QuantidadeFalhasConsecutivas);
+        }
+
+        public Task<bool> GetLockoutEnabledAsync(Usuario user)
+        {
+            return Task.FromResult(user.BloqueioHabilitado);
+        }
+
+        public Task SetLockoutEnabledAsync(Usuario user, bool enabled)
+        {
+            user.BloqueioHabilitado = enabled;
+            Salvar(user);
+            return Task.FromResult(0);
+        }
+
+        public Task SetPasswordHashAsync(Usuario user, string passwordHash)
+        {
+            user.Senha = passwordHash;
+            Salvar(user);
+            return Task.FromResult<object>(null);
+        }
+
+        public Task<string> GetPasswordHashAsync(Usuario user)
+        {
+            return Task.FromResult(user.Senha);
+        }
+
+        public Task<bool> HasPasswordAsync(Usuario user)
+        {
+            return Task.FromResult(!string.IsNullOrEmpty(user.Senha));
         }
 
         public Task AddToRoleAsync(Usuario user, string roleName)
@@ -59,35 +114,35 @@ namespace Itanio.Autenticacao.Repositorios
 
         public Task<bool> IsInRoleAsync(Usuario user, string roleName)
         {
-            return Task.FromResult<bool>(GetRolesAsync(user).Result.Contains(roleName));
+            return Task.FromResult(GetRolesAsync(user).Result.Contains(roleName));
         }
 
         public Task CreateAsync(Usuario user)
         {
             Salvar(user);
-            return Task.FromResult<Object>(null);
+            return Task.FromResult<object>(null);
         }
 
         public Task UpdateAsync(Usuario user)
         {
             Salvar(user);
-            return Task.FromResult<Object>(null);
+            return Task.FromResult<object>(null);
         }
 
         public Task DeleteAsync(Usuario user)
         {
             Excluir(user.Id);
-            return Task.FromResult<Object>(null);
+            return Task.FromResult<object>(null);
         }
 
         public Task<Usuario> FindByIdAsync(Guid userId)
         {
-            return Task.FromResult<Usuario>(ObterPorId(userId));
+            return Task.FromResult(ObterPorId(userId));
         }
 
         public Task<Usuario> FindByNameAsync(string userName)
         {
-            return Task.FromResult<Usuario>(ObterPorEmail(userName));
+            return Task.FromResult(ObterPorEmail(userName));
         }
 
         public void Dispose()
@@ -99,95 +154,30 @@ namespace Itanio.Autenticacao.Repositorios
             }
         }
 
-        public Task SetPasswordHashAsync(Usuario user, string passwordHash)
-        {
-            user.Senha = passwordHash;
-            Salvar(user);
-            return Task.FromResult<Object>(null);
-        }
-
-        public Task<string> GetPasswordHashAsync(Usuario user)
-        {
-            return Task.FromResult<string>(user.Senha);
-        }
-
-        public Task<bool> HasPasswordAsync(Usuario user)
-        {
-            return Task.FromResult<bool>(!string.IsNullOrEmpty(user.Senha));
-        }
-
-        public Task<DateTimeOffset> GetLockoutEndDateAsync(Usuario user)
-        {
-            return
-              Task.FromResult(user.DataHoraFimBloqueio.HasValue
-                  ? new DateTimeOffset(DateTime.SpecifyKind(user.DataHoraFimBloqueio.Value, DateTimeKind.Utc))
-                  : new DateTimeOffset());
-        }
-
-        public Task SetLockoutEndDateAsync(Usuario user, DateTimeOffset lockoutEnd)
-        {
-           
-            user.DataHoraFimBloqueio = lockoutEnd.UtcDateTime;
-            Salvar(user);
-            return Task.FromResult(0);
-        }
-
-        public Task<int> IncrementAccessFailedCountAsync(Usuario user)
-        {
-           
-            user.QuantidadeFalhasConsecutivas++;
-            Salvar(user);
-            return Task.FromResult(user.QuantidadeFalhasConsecutivas);
-        }
-
-        public Task ResetAccessFailedCountAsync(Usuario user)
-        {
-        
-            user.QuantidadeFalhasConsecutivas = 0;
-            Salvar(user);
-            return Task.FromResult(user.QuantidadeFalhasConsecutivas);
-        }
-
-        public Task<int> GetAccessFailedCountAsync(Usuario user)
-        {
-         
-            return Task.FromResult(user.QuantidadeFalhasConsecutivas);
-        }
-
-        public Task<bool> GetLockoutEnabledAsync(Usuario user)
-        {
-            return Task.FromResult(user.BloqueioHabilitado);
-        }
-
-        public Task SetLockoutEnabledAsync(Usuario user, bool enabled)
-        {
-         
-            user.BloqueioHabilitado = enabled;
-            Salvar(user);
-            return Task.FromResult(0);
-        }
         public Task SetTwoFactorEnabledAsync(Usuario user, bool enabled)
         {
-         
             user.DuplaVerificacaoHabilitada = enabled;
             Salvar(user);
             return Task.FromResult(0);
         }
+
         public Task<bool> GetTwoFactorEnabledAsync(Usuario user)
         {
             return Task.FromResult(user.DuplaVerificacaoHabilitada);
         }
 
         #region queries
+
         public ICollection<Usuario> ListarTodos()
         {
             return _gerenciadorConexao.Conexao.Query<Usuario>(SQL_ListarTodos).ToList();
         }
+
         public Usuario ObterPorId(Guid id)
         {
             var resultados = _gerenciadorConexao.Conexao.QueryMultiple(SQL_ObterPorId
-                + SQL_ListarGruposPorUsuario
-                + SQL_ListarPermissoesPorUsuario, new { id });
+                                                                       + SQL_ListarGruposPorUsuario
+                                                                       + SQL_ListarPermissoesPorUsuario, new {id});
             var usuario = resultados.Read<Usuario>().SingleOrDefault();
 
             if (usuario != null)
@@ -197,14 +187,10 @@ namespace Itanio.Autenticacao.Repositorios
                 var permissoes = resultados.Read<PermissaoPorGrupo>();
                 var permissoesPorGrupo = permissoes.GroupBy(x => x.IdGrupoAcesso);
                 foreach (var item in permissoesPorGrupo)
-                {
                     usuario.GruposAcesso.Single(x => x.Id == item.Key).Permissoes = item
                         .ToList()
                         .ConvertAll(
-                            new Converter<PermissaoPorGrupo, Permissao>(
-                               (x) => new Permissao(x.Id, x.Nome)
-                            ));
-                }
+                            x => new Permissao(x.Id, x.Nome));
             }
 
             return usuario;
@@ -225,16 +211,13 @@ namespace Itanio.Autenticacao.Repositorios
 
         public void Excluir(Guid id)
         {
-            _gerenciadorConexao.Conexao.Execute(SQL_Excluir, new { id });
+            _gerenciadorConexao.Conexao.Execute(SQL_Excluir, new {id});
         }
 
         public Usuario ObterPorEmail(string email)
         {
-            var usuario = _gerenciadorConexao.Conexao.Query<Usuario>(SQL_ObterPorEmail, new { email }).SingleOrDefault();
-            if (usuario != null)
-            {
-                usuario = ObterPorId(usuario.Id);
-            }
+            var usuario = _gerenciadorConexao.Conexao.Query<Usuario>(SQL_ObterPorEmail, new {email}).SingleOrDefault();
+            if (usuario != null) usuario = ObterPorId(usuario.Id);
             return usuario;
         }
 
@@ -249,6 +232,7 @@ namespace Itanio.Autenticacao.Repositorios
                                                 Usuario
                                            WHERE 
                                                 ID = @ID";
+
         private const string SQL_ObterPorEmail = @"SELECT 
                                                 *
                                            FROM
@@ -265,6 +249,7 @@ namespace Itanio.Autenticacao.Repositorios
                                                             GrupoAcessoUsuario gu on ga.id = gu.idGrupoAcesso
                                                         where
                                                             gu.idUsuario = @Id";
+
         private const string SQL_ListarPermissoesPorUsuario = @"SELECT 
                                                                     P.*,
                                                                     gp.idGrupoAcesso
@@ -306,6 +291,7 @@ namespace Itanio.Autenticacao.Repositorios
 
 
         private const string SQL_Excluir = @"DELETE FROM Usuario WHERE Id = @Id";
+
         #endregion
     }
 }

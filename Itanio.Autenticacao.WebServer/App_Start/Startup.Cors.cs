@@ -1,8 +1,8 @@
-﻿using Microsoft.Owin.Cors;
-using Owin;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Threading.Tasks;
 using System.Web.Cors;
+using Microsoft.Owin.Cors;
+using Owin;
 
 namespace Itanio.Autenticacao.WebServer
 {
@@ -22,16 +22,10 @@ namespace Itanio.Autenticacao.WebServer
             var origins = ConfigurationManager.AppSettings["CorsOrigins"];
 
             if (origins != null)
-            {
                 foreach (var origin in origins.Split(';'))
-                {
                     corsPolicy.Origins.Add(origin);
-                }
-            }
             else
-            {
                 corsPolicy.AllowAnyOrigin = true;
-            }
 
             var corsOptions = new CorsOptions
             {
@@ -43,7 +37,5 @@ namespace Itanio.Autenticacao.WebServer
 
             app.UseCors(corsOptions);
         }
-
-       
     }
 }

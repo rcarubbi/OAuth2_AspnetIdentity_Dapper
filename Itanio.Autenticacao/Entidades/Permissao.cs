@@ -10,24 +10,14 @@ namespace Itanio.Autenticacao.Entidades
             Nome = nome;
         }
 
-        public int Id
-        {
-            get;
-            internal set;
-        }
-
         public string Nome { get; set; }
+
+        public int Id { get; internal set; }
 
         public string Name
         {
-            get
-            {
-                return Nome;
-            }
-            set
-            {
-                Nome = value;
-            }
+            get => Nome;
+            set => Nome = value;
         }
     }
 }

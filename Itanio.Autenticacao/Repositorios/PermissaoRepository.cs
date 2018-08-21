@@ -1,20 +1,22 @@
-﻿using Dapper;
-using Itanio.Autenticacao.Entidades;
-using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using Itanio.Autenticacao.Entidades;
+using Microsoft.AspNet.Identity;
 
 namespace Itanio.Autenticacao.Repositorios
 {
     public class PermissaoRepository : IQueryableRoleStore<Permissao, int>
     {
+        private const string SQL_ListarTodas = @"SELECT * FROM Permissao";
+
+        private GerenciadorConexao _gerenciadorConexao;
+
         public PermissaoRepository()
             : this(new GerenciadorConexao())
         {
-
         }
 
         public PermissaoRepository(GerenciadorConexao gerenciadorConexao)
@@ -22,17 +24,7 @@ namespace Itanio.Autenticacao.Repositorios
             _gerenciadorConexao = gerenciadorConexao;
         }
 
-        private GerenciadorConexao _gerenciadorConexao;
-
-        public IQueryable<Permissao> Roles
-        {
-            get
-            {
-                return ListarTodas().AsQueryable();
-            }
-        }
-
-        private const string SQL_ListarTodas = @"SELECT * FROM Permissao";
+        public IQueryable<Permissao> Roles => ListarTodas().AsQueryable();
 
         public Task UpdateAsync(Permissao role)
         {
@@ -60,12 +52,12 @@ namespace Itanio.Autenticacao.Repositorios
 
         public Task<Permissao> FindByIdAsync(int roleId)
         {
-            return Task.FromResult<Permissao>(ListarTodas().SingleOrDefault(p => p.Id == roleId));
+            return Task.FromResult(ListarTodas().SingleOrDefault(p => p.Id == roleId));
         }
 
         public Task<Permissao> FindByNameAsync(string roleName)
         {
-            return Task.FromResult<Permissao>(ListarTodas().SingleOrDefault(p => p.Nome == roleName));
+            return Task.FromResult(ListarTodas().SingleOrDefault(p => p.Nome == roleName));
         }
 
         public ICollection<Permissao> ListarTodas()

@@ -1,6 +1,6 @@
-﻿using Itanio.Autenticacao.Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Itanio.Autenticacao.Entidades;
 
 namespace Itanio.Tool.GestaoAssociado.Dominio.Entidades
 {
@@ -12,10 +12,7 @@ namespace Itanio.Tool.GestaoAssociado.Dominio.Entidades
 
         public string Email
         {
-            get
-            {
-                return Conta?.Email;
-            }
+            get => Conta?.Email;
             set
             {
                 if (Conta != null)
